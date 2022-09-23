@@ -19,6 +19,6 @@ workflows:
   pr_commit:
     jobs:
       - build
-      - test:
+      - lint:
         requires:
           - build
