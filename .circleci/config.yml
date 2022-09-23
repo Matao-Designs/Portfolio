@@ -7,3 +7,18 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test
+  lint:
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - checkout
+      - run: npm install
+      - run: nx run lint
+
+workflows:
+  pr_commit:
+    jobs:
+      - build
+      - test:
+        requires:
+          - build
