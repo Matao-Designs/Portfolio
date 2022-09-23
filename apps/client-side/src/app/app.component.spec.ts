@@ -5,7 +5,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent, NxWelcomeComponent],
+      declarations: [AppComponent, NxWelcomeComponent]
     }).compileComponents();
   });
 
@@ -18,7 +18,7 @@ describe('AppComponent', () => {
   it(`should have as title 'client-side'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('client-side');
+    expect(app.title).toEqual('Matt Mastej | Portfolio');
   });
 
   it('should render title', () => {
