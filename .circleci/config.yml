@@ -19,8 +19,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install Dependencies
-        command: npm install
+          name: Install Dependencies
+          command: npm install
       - run:
           name: Run Lint
           command: npx nx run lint
@@ -30,8 +30,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install Dependencies
-        command: npm install
+          name: Install Dependencies
+          command: npm install
       - run:
           name: Run Tests
           command: npx nx run test
