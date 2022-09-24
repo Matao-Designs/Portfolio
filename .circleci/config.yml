@@ -16,6 +16,13 @@ jobs:
       - checkout
       - run: npm install
       - run: npx nx run lint
+  test:
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - checkout
+      - run: npm install
+      - run: npx nx run test
 
 workflows:
   version: 2
@@ -26,3 +33,6 @@ workflows:
       - lint:
           name: lint
           requires: [build]
+      - test:
+          name: unit-tests
+          requires: [build, lint]
