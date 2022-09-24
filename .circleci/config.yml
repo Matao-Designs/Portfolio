@@ -35,4 +35,4 @@ workflows:
           requires: [build]
       - test:
           name: unit-tests
-          requires: [build, lint]
+          requires: [lint]
