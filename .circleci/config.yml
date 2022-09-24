@@ -7,22 +7,34 @@ jobs:
       - image: cimg/node:lts-browsers
     steps:
       - checkout
-      - run: npm install
-      - run: npm run test
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Build App
+          command: npm run build
   lint:
     docker:
       - image: cimg/node:lts-browsers
     steps:
       - checkout
-      - run: npm install
-      - run: npx nx run lint
+      - run:
+        name: Install Dependencies
+        command: npm install
+      - run:
+          name: Run Lint
+          command: npx nx run lint
   test:
     docker:
       - image: cimg/node:lts-browsers
     steps:
       - checkout
-      - run: npm install
-      - run: npx nx run test
+      - run:
+        name: Install Dependencies
+        command: npm install
+      - run:
+          name: Run Tests
+          command: npx nx run test
 
 workflows:
   version: 2
