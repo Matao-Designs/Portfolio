@@ -1,4 +1,5 @@
 version: 2.1
+
 jobs:
   build:
     docker:
@@ -16,7 +17,7 @@ jobs:
       - run: nx run lint
 
 workflows:
-  pr_commit:
+  pr-commit:
     jobs:
       - build
       - lint:
