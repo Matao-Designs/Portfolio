@@ -17,9 +17,11 @@ jobs:
       - run: nx run lint
 
 workflows:
+  version: 2
   pr-commit:
     jobs:
-      - build
+      - build:
+          name: build
       - lint:
-        requires:
-          - build
+          name: lint
+          requires: [build]
