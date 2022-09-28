@@ -4,6 +4,11 @@
     "nrwl.angular-console",
     "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "pivotal.vscode-manifest-yaml",
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    "mikestead.dotenv",
+    "coenraads.bracket-pair-colorizer"
   ]
 }
