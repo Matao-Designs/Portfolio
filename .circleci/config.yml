@@ -44,6 +44,9 @@ jobs:
       - run:
           name: Build Prod
           command: npx ng build client-side --prod
+      - run: ls
+      - run: cd dist && ls
+
       - run:
           name: Deploy Main Branch
           command: |
