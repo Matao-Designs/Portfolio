@@ -83,11 +83,11 @@ workflows:
           name: unit-tests
           requires: [lint]
       - prod_build:
-          name: prod_build
+          name: prod-build
           requires: [unit-tests]
       - prod_push:
-          name: prod_push
-          requires: [prod_build]
+          name: prod-push
+          requires: [prod-build]
           # filters:
           #   branches:
           #     only: main
