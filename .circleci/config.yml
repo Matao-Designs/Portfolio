@@ -59,7 +59,6 @@ jobs:
       - run:
           name: Deploy Main Branch
           command: |
-            cd dist/apps/client-side
             sudo apt-get update
             sudo apt-get -qq install git-ftp
             echo "Deploying Project"
