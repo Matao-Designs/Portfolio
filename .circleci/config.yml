@@ -35,10 +35,9 @@ jobs:
       - run:
           name: Run Tests
           command: npx nx run test
-  deploy:
+  prod_build:
     docker:
       - image: cimg/node:lts-browsers
-    working_directory: ./dist/apps/client-side
 
     steps:
       - checkout
@@ -46,22 +45,30 @@ jobs:
       - run:
           name: Build Prod
           command: npx ng build client-side --prod
-      # - persist_to_workspace:
-      #     root: workspace
-      #     paths:
-      #       - ./dist/apps/client-side/*
-      # - run: ls
-      # - run: cd dist
+      - run: mkdir -p workspace
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - ./dist/apps/client-side/*
 
-      - run:
-          name: Deploy Main Branch
-          command: |
-            cd dist/apps/client-side
-            sudo apt-get update
-            sudo apt-get -qq install git-ftp
-            echo "Deploying Project"
-            git ftp init --user "${username}" --passwd "${password}" ${ftp_location}
-            git ftp push --user "${username}" --passwd "${password}" ${ftp_location}
+    prod_push:
+      working_directory: /dist/apps/client-side
+      steps:
+        #   - attach_workspace
+        #       at: /tmp/workspace
+
+        # -run: |
+        #   if[[ `cat /tmp/workspace/dist/apps/client-side/]]
+
+        - run:
+            name: Deploy Main Branch
+            command: |
+              cd dist/apps/client-side
+              sudo apt-get update
+              sudo apt-get -qq install git-ftp
+              echo "Deploying Project"
+              git ftp init --user "${username}" --passwd "${password}" ${ftp_location}
+              git ftp push --user "${username}" --passwd "${password}" ${ftp_location}
 
 workflows:
   version: 2
@@ -75,9 +82,12 @@ workflows:
       - test:
           name: unit-tests
           requires: [lint]
-      - deploy:
-          name: deploy
+      - prod_build:
+          name: prod_build
           requires: [unit-tests]
+      - prod_push:
+          name: prod_push
+          requires: [prod_build]
           # filters:
           #   branches:
           #     only: main
