@@ -50,12 +50,18 @@ jobs:
             sudo apt-get update
             sudo apt-get -qq install git-ftp
             echo "Deploying Project"
-            git ftp push --user "${username}" --password "${password}" ${ftp_location}
+            git ftp push --user "${username}" --passwd "${password}" ${ftp_location}
 
 workflows:
   version: 2
   pr-commit:
     jobs:
+      - deploy:
+          name: deploy
+          requires: [unit-tests]
+          # filters:
+          #   branches:
+          #     only: main
       - build:
           name: build
       - lint:
@@ -64,9 +70,3 @@ workflows:
       - test:
           name: unit-tests
           requires: [lint]
-      - deploy:
-          name: deploy
-          requires: [unit-tests]
-          # filters:
-          #   branches:
-          #     only: main
