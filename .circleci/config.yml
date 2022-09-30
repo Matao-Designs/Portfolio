@@ -59,7 +59,8 @@ jobs:
     steps:
       # - checkout:
       #     path: ~/dist/apps/client-side
-      - restore_cache: v1-dist-{{.Environment.CIRCLE_BRANCH}}-{{.Environment.CIRCLE_SHA1}}
+      - restore_cache: 
+          key: v1-dist-{{.Environment.CIRCLE_BRANCH}}-{{.Environment.CIRCLE_SHA1}}
       - run:
           name: Deploy Main Branch
           command: |
