@@ -44,7 +44,10 @@ jobs:
       - run:
           name: Build Prod
           command: npx ng build client-side --prod
-      - run: mkdir -p workspace
+      - save_cache:
+          key: v1-dist-{{.Environment.CIRCLE_BRANCH}}-{{.Environment.CIRCLE_SHA1}}
+          paths: -dist
+      # - run: mkdir -p workspace
       # - persist_to_workspace:
       #     root: workspace
       #     paths:
@@ -52,10 +55,11 @@ jobs:
   prod-push:
     docker:
       - image: cimg/node:lts-browsers
-    working_directory: ~/dist/apps/client-side
+    # working_directory: ~/dist/apps/client-side
     steps:
-      - checkout:
-          path: ~/dist/apps/client-side
+      # - checkout:
+      #     path: ~/dist/apps/client-side
+      - restore_cache: v1-dist-{{.Environment.CIRCLE_BRANCH}}-{{.Environment.CIRCLE_SHA1}}
       - run:
           name: Deploy Main Branch
           command: |
