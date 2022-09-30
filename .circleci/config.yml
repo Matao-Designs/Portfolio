@@ -49,20 +49,20 @@ jobs:
           root: workspace
           paths:
             - ./dist/apps/client-side/*
-    prod-push:
-      docker:
-        - image: cimg/node:lts-browsers
-      working_directory: /dist/apps/client-side
-      steps:
-        - run:
-            name: Deploy Main Branch
-            command: |
-              cd dist/apps/client-side
-              sudo apt-get update
-              sudo apt-get -qq install git-ftp
-              echo "Deploying Project"
-              git ftp init --user "${username}" --passwd "${password}" ${ftp_location}
-              git ftp push --user "${username}" --passwd "${password}" ${ftp_location}
+  prod-push:
+    docker:
+      - image: cimg/node:lts-browsers
+    working_directory: /dist/apps/client-side
+    steps:
+      - run:
+          name: Deploy Main Branch
+          command: |
+            cd dist/apps/client-side
+            sudo apt-get update
+            sudo apt-get -qq install git-ftp
+            echo "Deploying Project"
+            git ftp init --user "${username}" --passwd "${password}" ${ftp_location}
+            git ftp push --user "${username}" --passwd "${password}" ${ftp_location}
 
 workflows:
   version: 2
