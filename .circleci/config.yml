@@ -45,9 +45,9 @@ jobs:
           name: Build Prod
           command: npx ng build client-side --prod
       - persist_to_workspace:
-          root: ~/
+          root: .
           paths:
-            - dist/*
+            - dist/apps/client-side/*
       - run: ls
       - run: cd dist && ls
 
