@@ -50,7 +50,6 @@ jobs:
       #     paths:
       #       - dist/apps/client-side/*
   prod-push:
-    type: approval
     docker:
       - image: cimg/node:lts-browsers
     working_directory: ~/dist/apps/client-side
@@ -83,6 +82,7 @@ workflows:
           name: prod-build
           requires: [unit-tests]
       - prod-push:
+          type: approval
           name: prod-push
           requires: [prod-build]
           # filters:
