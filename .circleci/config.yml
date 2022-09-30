@@ -44,16 +44,18 @@ jobs:
       - run:
           name: Build Prod
           command: npx ng build client-side --prod
-      # - run: mkdir -p workspace
-      # - persist_to_workspace:
-      #     root: workspace
-      #     paths:
-      #       - ./dist/apps/client-side/*
+      - run: mkdir -p workspace
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - dist/apps/client-side/*
   prod-push:
     docker:
       - image: cimg/node:lts-browsers
-    working_directory: /dist/apps/client-side
+    working_directory: ~/dist/apps/client-side
     steps:
+      - checkout:
+        path: ~/dist/apps/client-side
       - run:
           name: Deploy Main Branch
           command: |
