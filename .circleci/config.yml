@@ -43,7 +43,7 @@ jobs:
       - run: npm install --legacy-peer-deps
       - run:
           name: Build Prod
-          command: npx nx build --prod —app=client-side
+          command: ng build client-side --prod
       - run:
           name: Deploy Main Branch
           command: |
