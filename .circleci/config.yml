@@ -82,7 +82,7 @@ workflows:
           name: prod-build
           requires: [unit-tests]
       - prod-push:
-          type: approval
+          # type: approval
           name: prod-push
           requires: [prod-build]
           # filters:
