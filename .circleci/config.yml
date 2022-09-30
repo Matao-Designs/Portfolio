@@ -35,6 +35,22 @@ jobs:
       - run:
           name: Run Tests
           command: npx nx run test
+  deploy:
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - checkout
+      - run: npm install --legacy-peer-deps
+      - run:
+        name: Build Prod
+        command: ng build —prod —app=client-side
+      - run:
+        name: Deploy Main Branch
+        command: |
+          sudo apt-get update
+          sudo apt-get -qq install git-ftp
+          echo "Deploying Project"
+          git ftp push --user "${username}" --password "${password}" ${ftp_location}
 
 workflows:
   version: 2
@@ -48,3 +64,9 @@ workflows:
       - test:
           name: unit-tests
           requires: [lint]
+      - deploy:
+          name: deploy
+          requires: [test]
+          filters:
+            branches:
+              only: main
