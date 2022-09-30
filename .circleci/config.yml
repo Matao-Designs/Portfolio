@@ -46,7 +46,7 @@ jobs:
           command: npx ng build client-side --prod
       - save_cache:
           key: v1-dist-{{.Environment.CIRCLE_BRANCH}}-{{.Environment.CIRCLE_SHA1}}
-          paths: -dist
+          paths: [dist]
       # - run: mkdir -p workspace
       # - persist_to_workspace:
       #     root: workspace
@@ -59,7 +59,8 @@ jobs:
     steps:
       # - checkout:
       #     path: ~/dist/apps/client-side
-      - restore_cache: v1-dist-{{.Environment.CIRCLE_BRANCH}}-{{.Environment.CIRCLE_SHA1}}
+      - restore_cache:
+          key: v1-dist-{{.Environment.CIRCLE_BRANCH}}-{{.Environment.CIRCLE_SHA1}}
       - run:
           name: Deploy Main Branch
           command: |
