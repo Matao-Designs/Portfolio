@@ -55,7 +55,7 @@ jobs:
     working_directory: ~/dist/apps/client-side
     steps:
       - checkout:
-        path: ~/dist/apps/client-side
+          path: ~/dist/apps/client-side
       - run:
           name: Deploy Main Branch
           command: |
