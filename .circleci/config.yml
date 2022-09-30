@@ -44,6 +44,12 @@ jobs:
       - run:
           name: Build Prod
           command: npx ng build client-side --prod
+        artifacts:
+          - dist/**
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - dist/*
       - run: ls
       - run: cd dist && ls
 
