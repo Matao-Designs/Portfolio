@@ -67,6 +67,6 @@ workflows:
       - deploy:
           name: deploy
           requires: [unit-tests]
-          filters:
-            branches:
-              only: main
+          # filters:
+          #   branches:
+          #     only: main
