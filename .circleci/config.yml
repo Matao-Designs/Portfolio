@@ -35,10 +35,9 @@ jobs:
       - run:
           name: Run Tests
           command: npx nx run test
-  prod_build:
+  prod-build:
     docker:
       - image: cimg/node:lts-browsers
-
     steps:
       - checkout
       - run: npm install --legacy-peer-deps
@@ -50,16 +49,11 @@ jobs:
           root: workspace
           paths:
             - ./dist/apps/client-side/*
-
-    prod_push:
+    prod-push:
+      docker:
+        - image: cimg/node:lts-browsers
       working_directory: /dist/apps/client-side
       steps:
-        #   - attach_workspace
-        #       at: /tmp/workspace
-
-        # -run: |
-        #   if[[ `cat /tmp/workspace/dist/apps/client-side/]]
-
         - run:
             name: Deploy Main Branch
             command: |
@@ -82,10 +76,10 @@ workflows:
       - test:
           name: unit-tests
           requires: [lint]
-      - prod_build:
+      - prod-build:
           name: prod-build
           requires: [unit-tests]
-      - prod_push:
+      - prod-push:
           name: prod-push
           requires: [prod-build]
           # filters:
