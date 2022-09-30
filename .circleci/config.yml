@@ -49,7 +49,7 @@ jobs:
           paths:
             - dist/apps/client-side/*
       - run: ls
-      - run: cd dist && ls
+      - run: cd dist
 
       - run:
           name: Deploy Main Branch
