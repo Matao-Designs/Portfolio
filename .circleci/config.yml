@@ -44,12 +44,13 @@ jobs:
       - run:
           name: Build Prod
           command: npx ng build client-side --prod
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./dist/apps/client-side/*
-      - run: ls
-      - run: cd dist
+      # - persist_to_workspace:
+      #     root: workspace
+      #     paths:
+      #       - ./dist/apps/client-side/*
+      # - run: ls
+      # - run: cd dist
+      working_directory: ./dist/apps/client-side
 
       - run:
           name: Deploy Main Branch
