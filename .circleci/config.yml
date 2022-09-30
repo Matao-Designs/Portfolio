@@ -50,7 +50,7 @@ jobs:
             sudo apt-get update
             sudo apt-get -qq install git-ftp
             echo "Deploying Project"
-            git ftp init --user "MyUsername" --passwd "MyPassword" ftp.path.com/public_html
+            git ftp init --user "${username}" --passwd "${password}" ${ftp_location}
             git ftp push --user "${username}" --passwd "${password}" ${ftp_location}
 
 workflows:
