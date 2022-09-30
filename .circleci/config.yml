@@ -47,7 +47,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - dist/apps/client-side/*
+            - ~/dist/apps/client-side/*
       - run: ls
       - run: cd dist
 
