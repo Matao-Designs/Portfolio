@@ -38,6 +38,8 @@ jobs:
   deploy:
     docker:
       - image: cimg/node:lts-browsers
+    working_directory: ./dist/apps/client-side
+
     steps:
       - checkout
       - run: npm install --legacy-peer-deps
@@ -50,7 +52,6 @@ jobs:
       #       - ./dist/apps/client-side/*
       # - run: ls
       # - run: cd dist
-      working_directory: ./dist/apps/client-side
 
       - run:
           name: Deploy Main Branch
