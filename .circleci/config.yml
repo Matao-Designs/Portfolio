@@ -85,10 +85,10 @@ workflows:
       - prod-build:
           name: prod-build
           requires: [unit-tests]
-      - prod-push:
-          # type: approval
-          name: prod-push
-          requires: [prod-build]
-          # filters:
-          #   branches:
-          #     only: main
+      # - prod-push:
+      #     # type: approval
+      #     name: prod-push
+      #     requires: [prod-build]
+      # filters:
+      #   branches:
+      #     only: main
