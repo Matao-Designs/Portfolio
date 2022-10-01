@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - run:
           name: Build App
           command: npm run build
@@ -20,7 +20,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - run:
           name: Run Lint
           command: npx nx run lint
@@ -31,7 +31,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - run:
           name: Run Tests
           command: npx nx run test
