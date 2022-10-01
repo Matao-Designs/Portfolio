@@ -15,7 +15,7 @@ export class SplitIoService {
   public initPlugin() {
     const sdkConfig = {
       core: {
-        authorizationKey: '',
+        authorizationKey: 'j83c5q3m3dj2upo464kojdv51gvjusgnqbr1',
         key: 'key'
       }
     };
